@@ -1,0 +1,65 @@
+{{ include('common/header.twig') }}
+{{ include('common/body_header.twig') }}
+
+{% import 'parts/form.twig' as form %}
+{% import 'parts/main_body.twig' as main %}
+
+{% import 'parts/header.twig' as header %}
+
+{{ header.javascript_start }}
+	
+	function sub_bulk_regist() {
+		
+		var frm = document.inputform;
+		var data = [];
+		
+		var msg = "一括登録します。よろしいですか？";
+		if (!window.confirm(msg)) return false;
+		
+		$("table.list-table tbody tr").each(function(i) {
+			data[i] = [];
+			$('td', $(this)).each(function(j) {
+				data[i][j] = $(this).text();
+			});
+		});
+		
+		document.getElementById('csv_data').value = JSON.stringify(data);
+		
+		frm.submit();
+	}
+	
+{{ header.javascript_end }}
+
+<div id="main-list">
+	<div id="description">
+		<p>宛先一括登録確認</p>
+	</div>
+	{% if err == '1' %}
+		{{ main.info_msg("エラーデータがあります。")}}
+	{% else %}
+		{{ form.form_start("inputform", "", "", base_url~"mail_dest/MailDestBulkRegist/bulk_regist/", "post") }}
+			{{ form.form_hidden("", "csv_data", "") }}
+			<input type="button" class="btn_regist" value="一括登録" onclick="sub_bulk_regist();">
+		{{ form.form_end }}
+	{% endif %}
+	<div id="list-area">
+		<div id="mail-dest-bulk-table">
+			<table class="list-table">
+				{{ include('parts/list_col.twig')}}
+				<tbody id="container">
+					{% for key, item in csv_data %}
+						<tr {% if item[4] == '1' %}class="bulk-error"{% endif %}>
+							<td class="ta-center">{{ item[0] }}</td>
+							<td class="ta-center">{{ item[1] }}</td>
+							<td class="ta-center">{{ item[2] }}</td>
+							<td class="ta-center">{{ item[3] }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{{ main.return_list(base_url, "mail_dest/MailDestList/") }}
+</div>
+
+{{ include('common/footer.twig') }}

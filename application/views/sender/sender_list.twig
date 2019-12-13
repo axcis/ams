@@ -1,0 +1,34 @@
+{% extends('common/base_list.twig') %}
+
+{% block js %}
+	{{ include('common/pager_js.twig') }}
+{% endblock %}
+
+{% block title %}
+	送信者一覧
+{% endblock %}
+
+{% block main %}
+	<div id="list-area">
+		{% if list|length == 0 %}
+			{{ main.info_msg("データはありません。")}}
+		{% else %}
+			{{ main.pager_block() }}
+			<div id="sender-table">
+				<table class="list-table">
+					{{ include('parts/list_col.twig')}}
+					<tbody id="container">
+						{% for key,item in list %}
+							<tr>
+								<td class="ta-center"><a href="{{ base_url }}sender/SenderRegist/modify_input/{{ item.id }}"><i class="far fa-edit" aria-hidden="true"></i></a></td>
+								<td class="ta-center">{{ item.id }}</td>
+								<td class="ta-center">{{ item.sender_name }}</td>
+								<td class="ta-center">{{ item.mail_address }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

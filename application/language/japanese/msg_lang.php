@@ -14,6 +14,12 @@ $lang['err_over'] = "[%0]が[%1]を超えています。";
 $lang['err_bigger'] = "[%0]は[%1]よりも大きい値で入力してください。";
 $lang['err_not_integrity'] = "[%0]が0以下の入力です。";
 
+$lang['err_unmatch_ext'] = "拡張子は[%0]以外はアップロードできません。";
+$lang['err_file_bigger'] = "ファイルサイズは[%0]までです。";
+$lang['err_file_exist'] = "このファイルはすでにアップされています。";
+$lang['err_file_upload_impossible'] = "このファイルはアップロードできません。";
+$lang['err_file_upload_env_character'] = "環境依存文字を含むファイル名はアップロードできません。";
+
 //処理完了メッセージ
 $lang['db_registed'] = "登録しました。";
 $lang['db_modified'] = "更新しました。";

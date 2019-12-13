@@ -6,7 +6,7 @@
  * @author takanori_gozu
  *
  */
-class CalendarModel extends CI_Model {
+class CalendarModel extends MY_Model {
 	
 	private $_config = array();
 	private $_year = '';

@@ -1,0 +1,12 @@
+{% extends('common/base_input.twig') %}
+
+{% block title %}
+	{{ form.form_title("メール送信グループ"~value) }}
+{% endblock %}
+
+{% block inputform %}
+	<dl>
+		<dt>{{ form.set_col("グループ名", 1) }}</dt>
+		<dd>{{ form.input("group_name", group_name, "text", "", "", 50) }}</dd>
+	</dl>
+{% endblock %}

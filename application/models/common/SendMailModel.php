@@ -4,7 +4,7 @@
  * SendMailModel
  * @author takanori_gozu
  */
-class SendMailModel extends CI_Model {
+class SendMailModel extends MY_Model {
 
 	public function __construct() {
 		parent::__construct();

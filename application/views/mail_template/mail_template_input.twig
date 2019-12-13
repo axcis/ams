@@ -1,0 +1,16 @@
+{% extends('common/base_input.twig') %}
+
+{% block title %}
+	{{ form.form_title("メールテンプレート"~value) }}
+{% endblock %}
+
+{% block inputform %}
+	<dl>
+		<dt>{{ form.set_col("テンプレート名", 1) }}</dt>
+		<dd>{{ form.input("template_name", template_name, "text", "", "", 50) }}</dd>
+		<dt>{{ form.set_col("件名", 1) }}</dt>
+		<dd>{{ form.input("subject", subject, "text", "", "", 50) }}</dd>
+		<dt>{{ form.set_col("本文", 1) }}</dt>
+		<dd>{{ form.textarea("discription", 50, 15, discription) }}</dd>
+	</dl>
+{% endblock %}

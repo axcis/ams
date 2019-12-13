@@ -26,6 +26,12 @@ textarea{
 	padding: 2px;
 }
 
+#title-contents{
+	width: 90%;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
 #log-logo{
 	width: 220px;
 	margin: 70px auto 20px;
@@ -36,7 +42,7 @@ textarea{
 }
 
 #header-contents{
-	width: 1200px;
+	max-width: 1200px;
     margin: 0 auto;
 	height: 80px;
 }
@@ -70,6 +76,14 @@ textarea{
 
 #titleBox {
 	background: #222;
+}
+
+#titleBox h1{
+	float: left;
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 6px 0;
 }
 
 .form-wrapper {
@@ -125,13 +139,10 @@ textarea{
     position: relative;
     display: inline-block;
     color: #fff;
-    background: #D20B0B;/*色*/
 	/* グラデーション */
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d20b0b+0,aa0701+44,6d0019+100 */
-	background: #d20b0b; /* Old browsers */
-	background: -moz-linear-gradient(-45deg, #03A9F4 0%, #1C89BA 44%, #12729E 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(-45deg, #03A9F4 0%,#1C89BA 44%,#12729E 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(135deg, #03A9F4 0%,#1C89BA 44%,#12729E 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	background: -moz-linear-gradient(-45deg, #1780b9 0%, #1788b9 44%, #1796b9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #1780b9 0%,#1788b9 44%,#1796b9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #1780b9 0%,#1788b9 44%,#1796b9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d20b0b', endColorstr='#6d0019',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	/* グラデーション */
 	border-radius: 8px;
@@ -151,16 +162,15 @@ textarea{
 }
 
 .square_btn:hover {
-	background: #68d0fd;/*色*/
+	background: #406eb9;/*色*/
 }
 
 .square_btn_select {
-	/* TODO 色をどうするか？*/
-	background: #D20B0B;
+	background: #003377;
 }
 
 .square_btn_select:hover {
-	background: #f75555;/*色*/
+	background: #4367a2;/*色*/
 }
 
 #main-contents {
@@ -199,6 +209,44 @@ textarea{
 	margin: 10px auto;
 }
 
+#side-menu {
+	width: 25%;
+	overflow: auto;
+	left: 0;
+	position: relative;
+	bottom: 0;
+	z-index: 5;
+	float: left;
+}
+
+#nav-input {
+	display: none;
+}
+
+#nav-content {
+	margin: 10% 15%;
+}
+
+.square_btn {
+	margin-bottom: 15px;
+}
+
+#main-wrapper {
+	width: 75%;
+	margin: 10px auto;
+	right: 0;
+	float: right;
+	position:relative;
+}
+
+#main-list {
+	width: 80%;
+	margin: 10px auto;
+	right: 0;
+	position:relative;
+	min-height: 250px;
+}
+
 /* 検索 */
 .search-form {
 	padding: 0;
@@ -235,7 +283,7 @@ textarea{
 	padding: 5px 10px 5px 25px;
     margin: 0 10px;
     border-width: 0 0 1px 0;
-    width: 150px;
+    max-width: 300px;
     height: 30px;
     line-height: 30px;
 	box-sizing: border-box;
@@ -325,7 +373,7 @@ textarea{
 }
 
 .event-list{
-	width: 50%;
+	width: 60%;
 	margin: 20px auto;
 	padding-bottom: 20px;
 	border: 0;
@@ -402,6 +450,11 @@ textarea{
 	padding: 2px 4px;
 	margin-left: 1em;
 	border-radius: 2px;
+}
+
+.form-check-area {
+	padding-bottom: 10px;
+	margin-left: 10px;
 }
 
 .btn_detail{
@@ -1034,6 +1087,10 @@ textarea{
 
 .checkbox-icon {
 	margin-left: 5px;
+}
+
+.bulk-error {
+	background-color: #FFA500;
 }
 
 button[type=reset] {

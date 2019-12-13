@@ -1,0 +1,14 @@
+{% extends('common/base_input.twig') %}
+
+{% block title %}
+	{{ form.form_title("送信者"~value) }}
+{% endblock %}
+
+{% block inputform %}
+	<dl>
+		<dt>{{ form.set_col("送信者名", 1) }}</dt>
+		<dd>{{ form.input("sender_name", sender_name, "text", "", "", 50) }}</dd>
+		<dt>{{ form.set_col("メールアドレス", 1) }}</dt>
+		<dd>{{ form.input("mail_address", mail_address, "text", "", "", 50) }}</dd>
+	</dl>
+{% endblock %}

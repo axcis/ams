@@ -1,0 +1,41 @@
+{% extends('common/base_list.twig') %}
+
+{% block js %}
+	{{ include('common/pager_js.twig') }}
+{% endblock %}
+
+{% block title %}
+	配信宛先一覧
+{% endblock %}
+
+{% block search %}
+	{{ main.select_block("search-col", "送信グループ", 'search_mail_group', mail_group_map, search_mail_group) }}
+	{{ main.text_block("search-col", "宛先名", '', 'search_dest_name', search_dest_name) }}
+{% endblock %}
+
+{% block main %}
+	<div id="list-area">
+		{% if list|length == 0 %}
+			{{ main.info_msg("データはありません。")}}
+		{% else %}
+			{{ main.pager_block() }}
+			<div id="mail-dest-table">
+				<table class="list-table">
+					{{ include('parts/list_col.twig')}}
+					<tbody id="container">
+						{% for key,item in list %}
+							<tr>
+								<td class="ta-center"><a href="{{ base_url }}mail_dest/MailDestRegist/modify_input/{{ item.id }}"><i class="far fa-edit" aria-hidden="true"></i></a></td>
+								<td class="ta-center">{{ item.id }}</td>
+								<td class="ta-center">{{ item.dest_company_name }}</td>
+								<td class="ta-center">{{ item.dest_name }}</td>
+								<td class="ta-center">{{ item.mail_address }}</td>
+								<td class="ta-center"><input type="button" class="btn_detail" value="詳細" onclick="window.open('{{ base_url }}{{ class_path }}List/detail/{{ item.id }}', '詳細', 'width=900, height=550, menubar=no, toolbar=no, scrollbars=yes');"></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
