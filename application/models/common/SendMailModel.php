@@ -13,7 +13,7 @@ class SendMailModel extends MY_Model {
 	}
 	
 	//イニシャライズ
-	public function init($config) {
+	public function initialize($config) {
 		$this->email->initialize($config);
 	}
 

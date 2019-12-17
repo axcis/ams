@@ -56,7 +56,7 @@ class MailDestListModel extends MailDestBaseModel {
 		$link_list = array();
 		
 		$link_list[] = array('url' => 'mail_dest/MailDestRegist/regist_input', 'class' => 'far fa-edit', 'value' => '登録');
-		$link_list[] = array('url' => 'mail_dest/MailDestBulkRegist/regist_input', 'class' => 'far fa-edit', 'value' => '一括登録');
+// 		$link_list[] = array('url' => 'mail_dest/MailDestBulkRegist/regist_input', 'class' => 'far fa-edit', 'value' => '一括登録');
 		
 		return $link_list;
 	}

@@ -22,4 +22,9 @@ $lang['sender_name'] = "送信者名";
 $lang['dest_company_name'] = "会社名";
 $lang['dest_name'] = "宛先名";
 
+//メール配信
+$lang['sender'] = "送信者";
+$lang['send_group'] = "送信グループ";
+$lang['attach_file'] = "添付ファイル";
+
 ?>

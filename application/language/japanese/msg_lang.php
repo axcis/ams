@@ -25,6 +25,7 @@ $lang['db_registed'] = "登録しました。";
 $lang['db_modified'] = "更新しました。";
 $lang['db_deleted'] = "削除しました。";
 $lang['file_uploaded'] = "アップロードしました。";
+$lang['sended'] = "送信しました。";
 
 //コンテンツ情報メッセージ
 ?>

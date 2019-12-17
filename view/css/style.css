@@ -437,7 +437,7 @@ textarea{
 
 .input-box select {
 	border-width: 0 0 1px 0;
-	width: 150px;
+	/*width: 150px;*/
 	font-size: 15px;
 }
 

@@ -12,7 +12,7 @@ class SendHistoryDao {
 	const COL_ID = 'id';
 	const COL_SEND_TYPE = 'send_type';
 	const COL_SEND_TIME = 'send_time';
-	const COL_SEND_FROM = 'send_from';
+	const COL_SENDER_ID = 'sender_id';
 	const COL_SEND_MAIL_ADDRESS = 'send_mail_address';
 	const COL_MAIL_GROUP_ID = 'mail_group_id';
 	const COL_SUBJECT = 'subject';
