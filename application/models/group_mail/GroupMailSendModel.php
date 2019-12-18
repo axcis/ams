@@ -134,12 +134,19 @@ class GroupMailSendModel extends MY_Model {
 	 */
 	public function mail_send($input) {
 		
+		$upload_dir = "tmp/";
+		
+		//念のため
+		$attaches = glob($upload_dir. '*');
+		foreach ($attaches as $attach) {
+			unlink($attach);
+		}
+		
 		//一旦ファイルをアップロードする
 		if (isset($_FILES['up_file'])) {
 			$this->load->model('common/FileOperationModel', 'file');
-			$upload_dir = "tmp/";
 			for($i = 0; $i < count($_FILES["up_file"]["name"]); $i++ ){
-				$this->file->upload($upload_dir, $_FILES["up_file"]["tmp_name"][$i], mb_convert_encoding($_FILES["up_file"]["name"][$i], 'SJIS', 'UTF-8'));
+				$this->file->upload($upload_dir, $_FILES["up_file"]["tmp_name"][$i], mb_convert_encoding($_FILES["up_file"]["name"][$i], "ISO-2022-JP", "UTF-8" ));
 			}
 		}
 		
@@ -180,7 +187,7 @@ class GroupMailSendModel extends MY_Model {
 			//アップロード先から添付ファイルを取得
 			$attaches = glob($upload_dir. '*');
 			foreach ($attaches as $attach) {
-				$this->mail->attach($attach, '', mb_convert_encoding(basename($attach), 'SJIS', 'UTF-8'));
+				$this->mail->attach($attach, '', basename($attach));
 			}
 			$this->mail->send();
 		}
