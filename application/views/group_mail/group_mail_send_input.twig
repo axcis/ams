@@ -23,13 +23,16 @@
 				}
 			});
 		});
+		$('#clear').click(function() {
+			$('input[type=file]').val('');
+		});
 	});
 	
 {{ header.javascript_end }}
 
 {{ main.event_start }}
 	
-	{{ form.form_title("メール配信") }}
+	{{ form.form_title("グループメール配信") }}
 	
 	<div class="err-area">
 		{{ include('common/err_msg.twig') }}
@@ -51,7 +54,7 @@
 			<dt>{{ form.set_col("添付ファイル") }}</dt>
 			<div class="sel-area">
 				{{ form.input_file_multi("up_file[]") }}
-				{{ form.button("reset", "削除") }}
+				{{ form.input_button('clear', '削除')}}
 			</div>
 		</dl>
 		<p class="action">

@@ -1093,7 +1093,7 @@ textarea{
 	background-color: #FFA500;
 }
 
-button[type=reset] {
+#clear {
 	margin-top: 10px;
 }
 
