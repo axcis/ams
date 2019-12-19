@@ -1,9 +1,5 @@
 {% extends('common/base_list.twig') %}
 
-{% block js %}
-	{{ include('common/pager_js.twig') }}
-{% endblock %}
-
 {% block title %}
 	配信済みメール一覧
 {% endblock %}
@@ -17,7 +13,6 @@
 		{% if list|length == 0 %}
 			{{ main.info_msg("配信データはありません。")}}
 		{% else %}
-			{{ main.pager_block() }}
 			<div id="delivered-mail-table">
 				<table class="list-table">
 					{{ include('parts/list_col.twig')}}
