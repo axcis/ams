@@ -1,5 +1,39 @@
 {% extends('common/base_list.twig') %}
 
+{% block js %}
+	{{ include('common/pager_js.twig') }}
+{% endblock %}
+
+{% block title %}
+	配信済みメール一覧
+{% endblock %}
+
+{% block search %}
+	{{ main.select_block("search-col", "配信タイプ", 'search_send_type', deliver_type_map, search_send_type) }}
+{% endblock %}
+
 {% block main %}
-	
+	<div id="list-area">
+		{% if list|length == 0 %}
+			{{ main.info_msg("配信データはありません。")}}
+		{% else %}
+			{{ main.pager_block() }}
+			<div id="delivered-mail-table">
+				<table class="list-table">
+					{{ include('parts/list_col.twig')}}
+					<tbody id="container">
+						{% for key,item in list %}
+							<tr>
+								<td class="ta-center">{{ item.id }}</td>
+								<td class="ta-center">{{ item.send_type }}</td>
+								<td class="ta-center">{{ item.send_time|date('Y年n月j日 H:i') }}</td>
+								<td class="ta-center">{{ item.subject }}</td>
+								<td class="ta-center"></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+	</div>
 {% endblock %}

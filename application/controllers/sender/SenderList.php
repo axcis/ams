@@ -16,7 +16,7 @@ class SenderList extends MY_Controller {
 		$this->load->library('dao/SenderDao');
 		
 		$this->set('class_key', 'sender');
-		$this->set('class_path', 'sender/Sender');
+		$this->set('class_path', 'sender/SenderList');
 		
 		$this->set('list', $this->model->get_list());
 		$this->set('list_col', $this->model->get_list_col());

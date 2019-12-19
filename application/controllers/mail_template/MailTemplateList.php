@@ -16,7 +16,7 @@ class MailTemplateList extends MY_Controller {
 		$this->load->library('dao/MailTemplateDao');
 		
 		$this->set('class_key', 'mail_template');
-		$this->set('class_path', 'mail_template/MailTemplate');
+		$this->set('class_path', 'mail_template/MailTemplateList');
 		
 		$this->set('list', $this->model->get_list());
 		$this->set('list_col', $this->model->get_list_col());
@@ -36,7 +36,7 @@ class MailTemplateList extends MY_Controller {
 		$search = $this->get_attribute();
 		
 		$this->set('class_key', 'mail_template');
-		$this->set('class_path', 'mail_template/MailTemplate');
+		$this->set('class_path', 'mail_template/MailTemplateList');
 		
 		$this->set('list', $this->model->get_list($search));
 		$this->set('list_col', $this->model->get_list_col());

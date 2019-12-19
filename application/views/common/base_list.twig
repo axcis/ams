@@ -36,13 +36,13 @@
 			<p>{% block title %}{% endblock %}</p>
 		</div>
 		{% if no_search != '1' %}
-			{{ form.form_start("search-form", "", "search-form", base_url~class_path~"List/search/", "post") }}
+			{{ form.form_start("search-form", "", "search-form", base_url~class_path~"/search/", "post") }}
 				<div id="search-area">
 					<p id="search-area-title">検索</p>
 					<div id="search-area-info">
 						{% block search %}{% endblock %}
 					</div>
-					{{ form.search_submit(base_url, class_path~"List") }}
+					{{ form.search_submit(base_url, class_path) }}
 				</div>
 			{{ form.form_end }}
 		{% endif %}

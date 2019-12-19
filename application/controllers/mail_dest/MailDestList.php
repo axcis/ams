@@ -17,7 +17,7 @@ class MailDestList extends MY_Controller {
 		$this->load->library('dao/MailGroupDao');
 		
 		$this->set('class_key', 'mail_dest');
-		$this->set('class_path', 'mail_dest/MailDest');
+		$this->set('class_path', 'mail_dest/MailDestList');
 		
 		$this->set('list', $this->model->get_list());
 		$this->set('list_col', $this->model->get_list_col());
@@ -39,7 +39,7 @@ class MailDestList extends MY_Controller {
 		$search = $this->get_attribute();
 		
 		$this->set('class_key', 'mail_dest');
-		$this->set('class_path', 'mail_dest/MailDest');
+		$this->set('class_path', 'mail_dest/MailDestList');
 		
 		$this->set('list', $this->model->get_list($search));
 		$this->set('list_col', $this->model->get_list_col());
