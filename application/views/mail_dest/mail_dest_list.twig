@@ -30,7 +30,7 @@
 								<td class="ta-center">{{ item.dest_company_name }}</td>
 								<td class="ta-center">{{ item.dest_name }}</td>
 								<td class="ta-center">{{ item.mail_address }}</td>
-								<td class="ta-center"><input type="button" class="btn_detail" value="詳細" onclick="window.open('{{ base_url }}{{ class_path }}List/detail/{{ item.id }}', '詳細', 'width=900, height=550, menubar=no, toolbar=no, scrollbars=yes');"></td>
+								<td class="ta-center"><input type="button" class="btn_detail" value="詳細" onclick="window.open('{{ base_url }}{{ class_path }}/detail/{{ item.id }}', '詳細', 'width=900, height=550, menubar=no, toolbar=no, scrollbars=yes');"></td>
 							</tr>
 						{% endfor %}
 					</tbody>
