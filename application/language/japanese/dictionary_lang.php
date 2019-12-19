@@ -25,6 +25,7 @@ $lang['dest_name'] = "宛先名";
 //メール配信
 $lang['sender'] = "送信者";
 $lang['send_group'] = "送信グループ";
+$lang['dest'] = "宛先";
 $lang['attach_file'] = "添付ファイル";
 
 ?>
