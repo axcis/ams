@@ -72,7 +72,7 @@
 {% macro action(action, value, delete_disable) %}
 	<p class="action">
 		<input type="button" class="btn_regist" value="{{ value }}" onclick="sub_module('{{ action }}', '{{ value }}');">
-		{% if action == 'modify' and delete_disable != '1' %}<input type="button" class="btn_delete" value="削除" onclick="sub_module('delete', '削除');">{% endif %}
+		{#{% if action == 'modify' and delete_disable != '1' %}<input type="button" class="btn_delete" value="削除" onclick="sub_module('delete', '削除');">{% endif %}#}
 	</p>
 {% endmacro %}
 
