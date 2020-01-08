@@ -1,0 +1,54 @@
+{% extends('common/base_detail.twig') %}
+
+{% block main %}
+
+	{{ form.form_title("詳細") }}
+	
+	<div class="event-content">
+		<h4><i class="fa" aria-hidden="true"></i>配信タイプ</h4>
+		<p>{{ send_type }}</p>
+	</div>
+	
+	<div class="event-content">
+		<h4><i class="fa" aria-hidden="true"></i>配信時間</h4>
+		<p>{{ send_time|date('Y年n月j日 H:i') }}</p>
+	</div>
+	
+	<div class="event-content">
+		<h4><i class="fa" aria-hidden="true"></i>配信者</h4>
+		<p>{{ sender_id }}</p>
+	</div>
+	
+	{% if type == '1' %}
+		<div class="event-content">
+			<h4><i class="fa" aria-hidden="true"></i>配信グループ名</h4>
+			<p>{{ mail_group_id }}</p>
+		</div>
+	{% elseif type == '2' %}
+		<div class="event-content">
+			<h4><i class="fa" aria-hidden="true"></i>宛先</h4>
+			{% for key, value in mail_dest_ids %}
+				<p>{{ value }}</p>
+			{% endfor %}
+		</div>
+	{% endif %}
+	
+	<div class="event-content">
+		<h4><i class="fa" aria-hidden="true"></i>件名</h4>
+		<p>{{ subject }}</p>
+	</div>
+	
+	<div class="event-content">
+		<h4><i class="fa" aria-hidden="true"></i>本文</h4>
+		<p>{{ discription|nl2br }}</p>
+	</div>
+	
+	<p class="action">
+		<input type="button" class="btn_regist" value="参照配信" onclick="sub_redirect('{{ base_url }}', '{{ refer_path }}', 'refer', '{{ id }}');">
+	</p>
+	
+	</div>
+	
+	{{ main.return_top(base_url) }}
+	
+{% endblock %}

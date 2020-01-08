@@ -27,6 +27,27 @@ class SpotMailSend extends MY_Controller {
 	}
 	
 	/**
+	 * 参照配信用
+	 */
+	public function refer($id) {
+		
+		$this->load->model('spot_mail/SpotMailSendModel', 'model');
+		$this->load->library('dao/SendHistoryDao');
+		$this->load->library('dao/MailTemplateDao');
+		$this->load->library('dao/SenderDao');
+		$this->load->library('dao/MailDestDao');
+		
+		$this->set_attribute($this->model->get_history_info($id));
+		$this->set('action', 'send');
+		
+		$this->set('mail_dest_map', $this->model->get_mail_dest_map());
+		$this->set('mail_sender_map', $this->model->get_sender_map());
+		$this->set('mail_template_map', $this->model->get_mail_template_map());
+		
+		$this->view('spot_mail/spot_mail_send_input');
+	}
+	
+	/**
 	 * テンプレート選択時
 	 */
 	public function select() {

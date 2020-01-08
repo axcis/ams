@@ -27,6 +27,27 @@ class GroupMailSend extends MY_Controller {
 	}
 	
 	/**
+	 * 参照配信
+	 */
+	public function refer($id) {
+		
+		$this->load->model('group_mail/GroupMailSendModel', 'model');
+		$this->load->library('dao/SendHistoryDao');
+		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/MailTemplateDao');
+		$this->load->library('dao/SenderDao');
+		
+		$this->set_attribute($this->model->get_history_info($id));
+		$this->set('action', 'send');
+		
+		$this->set('mail_sender_map', $this->model->get_sender_map());
+		$this->set('mail_group_map', $this->model->get_mail_group_map());
+		$this->set('mail_template_map', $this->model->get_mail_template_map());
+		
+		$this->view('group_mail/group_mail_send_input');
+	}
+	
+	/**
 	 * テンプレート選択時
 	 */
 	public function select() {

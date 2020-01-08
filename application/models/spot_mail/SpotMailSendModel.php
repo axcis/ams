@@ -88,6 +88,18 @@ class SpotMailSendModel extends MY_Model {
 	}
 	
 	/**
+	 * 参照配信用
+	 */
+	public function get_history_info($id) {
+		
+		$this->set_table(SendHistoryDao::TABLE_NAME, self::DB_TRAN);
+		
+		$this->add_where(SendHistoryDao::COL_ID, $id);
+		
+		return $this->do_select_info();
+	}
+	
+	/**
 	 * バリデーション
 	 */
 	public function validation($input) {
