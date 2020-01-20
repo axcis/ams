@@ -1,20 +1,20 @@
 <?php
 
 /**
- * MailGroupRegistModel
+ * ExcludeGroupRegistModel
  * @author takanori_gozu
  *
  */
-class MailGroupRegistModel extends MY_Model {
+class ExcludeGroupRegistModel extends MY_Model {
 	
 	/**
 	 * 詳細
 	 */
 	public function get_info($id) {
 		
-		$this->set_table(MailGroupDao::TABLE_NAME, self::DB_MASTER);
+		$this->set_table(ExcludeGroupDao::TABLE_NAME, self::DB_MASTER);
 		
-		$this->add_where(MailGroupDao::COL_ID, $id);
+		$this->add_where(ExcludeGroupDao::COL_ID, $id);
 		
 		return $this->do_select_info();
 	}
@@ -42,9 +42,9 @@ class MailGroupRegistModel extends MY_Model {
 	 */
 	public function db_regist($input) {
 		
-		$this->set_table(MailGroupDao::TABLE_NAME, self::DB_MASTER);
+		$this->set_table(ExcludeGroupDao::TABLE_NAME, self::DB_MASTER);
 		
-		$this->add_col_val(MailGroupDao::COL_GROUP_NAME, $input['group_name']);
+		$this->add_col_val(ExcludeGroupDao::COL_GROUP_NAME, $input['group_name']);
 		
 		$this->do_insert();
 	}
@@ -54,11 +54,11 @@ class MailGroupRegistModel extends MY_Model {
 	 */
 	public function db_modify($input) {
 		
-		$this->set_table(MailGroupDao::TABLE_NAME, self::DB_MASTER);
+		$this->set_table(ExcludeGroupDao::TABLE_NAME, self::DB_MASTER);
 		
-		$this->add_col_val(MailGroupDao::COL_GROUP_NAME, $input['group_name']);
+		$this->add_col_val(ExcludeGroupDao::COL_GROUP_NAME, $input['group_name']);
 		
-		$this->add_where(MailGroupDao::COL_ID, $input['id']);
+		$this->add_where(ExcludeGroupDao::COL_ID, $input['id']);
 		
 		$this->do_update();
 	}

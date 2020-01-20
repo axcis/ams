@@ -13,6 +13,6 @@ class MailDestDao {
 	const COL_DEST_COMPANY_NAME = 'dest_company_name';
 	const COL_DEST_NAME = 'dest_name';
 	const COL_MAIL_ADDRESS = 'mail_address';
-	const COL_MAIL_GROUP_ID = 'mail_group_id';
+	const COL_EXCLUDE_GROUP_ID = 'exclude_group_id';
 }
 ?>

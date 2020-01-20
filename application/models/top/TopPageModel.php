@@ -40,36 +40,31 @@ class TopPageModel extends MY_Model {
 	 */
 	public function get_group_name($group_id) {
 		
-		$this->set_table(MailGroupDao::TABLE_NAME, self::DB_MASTER);
+		$this->set_table(ExcludeGroupDao::TABLE_NAME, self::DB_MASTER);
 		
-		$this->add_select(MailGroupDao::COL_GROUP_NAME);
-		$this->add_where(MailGroupDao::COL_ID, $group_id);
+		$this->add_select(ExcludeGroupDao::COL_GROUP_NAME);
+		$this->add_where(ExcludeGroupDao::COL_ID, $group_id);
 		
 		$info = $this->do_select_info();
 		
-		return $info[MailGroupDao::COL_GROUP_NAME];
+		return $info[ExcludeGroupDao::COL_GROUP_NAME];
 	}
 	
 	/**
 	 * 宛先
 	 */
-	public function get_dest_names($dest_ids) {
+	public function get_dest_names($dest_id) {
 		
 		$this->set_table(MailDestDao::TABLE_NAME, self::DB_MASTER);
 		
 		$this->add_select(MailDestDao::COL_DEST_COMPANY_NAME);
 		$this->add_select(MailDestDao::COL_DEST_NAME);
 		
-		$this->add_where_in(MailDestDao::COL_ID, $dest_ids);
+		$this->add_where(MailDestDao::COL_ID, $dest_id);
 		
-		$list = $this->do_select();
-		$map = array();
+		$info = $this->do_select_info();
 		
-		foreach ($list as $row) {
-			$map[] = $row[MailDestDao::COL_DEST_COMPANY_NAME]. ' '. $row[MailDestDao::COL_DEST_NAME];
-		}
-		
-		return $map;
+		return $info[MailDestDao::COL_DEST_COMPANY_NAME]. ' '. $info[MailDestDao::COL_DEST_NAME];
 	}
 	
 	/**
@@ -131,8 +126,8 @@ class TopPageModel extends MY_Model {
 		$this->add_select_as(SendHistoryDao::COL_SEND_TYPE, 'type');
 		$this->add_select(SendHistoryDao::COL_SEND_TIME);
 		$this->add_select(SendHistoryDao::COL_SENDER_ID);
-		$this->add_select(SendHistoryDao::COL_MAIL_DEST_IDS);
-		$this->add_select(SendHistoryDao::COL_MAIL_GROUP_ID);
+		$this->add_select(SendHistoryDao::COL_MAIL_DEST_ID);
+		$this->add_select(SendHistoryDao::COL_EXCLUDE_GROUP_ID);
 		$this->add_select(SendHistoryDao::COL_SUBJECT);
 		$this->add_select(SendHistoryDao::COL_DISCRIPTION);
 		
@@ -146,18 +141,18 @@ class TopPageModel extends MY_Model {
 		switch ($info[SendHistoryDao::COL_SEND_TYPE]) {
 			case '1':
 				//グループ配信
-				$group_name = $this->get_group_name($info[SendHistoryDao::COL_MAIL_GROUP_ID]);
+				$group_name = $this->get_group_name($info[SendHistoryDao::COL_EXCLUDE_GROUP_ID]);
 				$info[SendHistoryDao::COL_SEND_TYPE] = $deliver_type_map[$info[SendHistoryDao::COL_SEND_TYPE]];
 				$info[SendHistoryDao::COL_SENDER_ID] = $sender_map[$info[SendHistoryDao::COL_SENDER_ID]];
-				$info[SendHistoryDao::COL_MAIL_GROUP_ID] = $group_name;
+				$info[SendHistoryDao::COL_EXCLUDE_GROUP_ID] = $group_name;
 				$info['refer_path'] = 'group_mail/GroupMailSend';
 				break;
 			case '2':
 				//スポット配信
-				$dest_names = $this->get_dest_names($info[SendHistoryDao::COL_MAIL_DEST_IDS]);
+				$dest_names = $this->get_dest_names($info[SendHistoryDao::COL_MAIL_DEST_ID]);
 				$info[SendHistoryDao::COL_SEND_TYPE] = $deliver_type_map[$info[SendHistoryDao::COL_SEND_TYPE]];
 				$info[SendHistoryDao::COL_SENDER_ID] = $sender_map[$info[SendHistoryDao::COL_SENDER_ID]];
-				$info[SendHistoryDao::COL_MAIL_DEST_IDS] = $dest_names;
+				$info[SendHistoryDao::COL_MAIL_DEST_ID] = $dest_names;
 				$info['refer_path'] = 'spot_mail/SpotMailSend';
 				break;
 		}

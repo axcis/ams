@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-	メール送信グループ一覧
+	送信除外グループ一覧
 {% endblock %}
 
 {% block search %}
@@ -24,7 +24,7 @@
 					<tbody id="container">
 						{% for key,item in list %}
 							<tr>
-								<td class="ta-center"><a href="{{ base_url }}mail_group/MailGroupRegist/modify_input/{{ item.id }}"><i class="far fa-edit" aria-hidden="true"></i></a></td>
+								<td class="ta-center"><a href="{{ base_url }}exclude_group/ExcludeGroupRegist/modify_input/{{ item.id }}"><i class="far fa-edit" aria-hidden="true"></i></a></td>
 								<td class="ta-center">{{ item.id }}</td>
 								<td class="ta-center">{{ item.group_name }}</td>
 							</tr>

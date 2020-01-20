@@ -43,8 +43,8 @@
 		<dl>
 			<dt>{{ form.set_col("送信者", 1) }}</dt>
 			<dd>{{ form_select('sender_id', mail_sender_map, sender_id)|raw }}</dd>
-			<dt>{{ form.set_col("送信グループ", 1) }}</dt>
-			<dd>{{ form_select('mail_group_id', mail_group_map, mail_group_id)|raw }}</dd>
+			<dt>{{ form.set_col("送信除外グループ", 1) }}</dt>
+			<dd>{{ form_select('exclude_group_id', exclude_group_map, exclude_group_id)|raw }}</dd>
 			<dt>{{ form.set_col("メールテンプレート") }}</dt>
 			<dd>{{ form_select('mail_template', mail_template_map, mail_template)|raw }}</dd>
 			<dt>{{ form.set_col("件名", 1) }}</dt>

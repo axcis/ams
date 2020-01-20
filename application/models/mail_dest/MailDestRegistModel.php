@@ -27,6 +27,7 @@ class MailDestRegistModel extends MailDestBaseModel {
 		$dest_company_name = $input['dest_company_name'];
 		$dest_name = $input['dest_name'];
 		$mail_address = $input['mail_address'];
+		$exclude_group_id = $input['exclude_group_id'];
 		
 		$msgs = array();
 		
@@ -34,6 +35,7 @@ class MailDestRegistModel extends MailDestBaseModel {
 		if (trim($dest_company_name) == '') $msgs[] = $this->lang->line('err_required', array($this->lang->line('dest_company_name')));
 		if (trim($dest_name) == '') $msgs[] = $this->lang->line('err_required', array($this->lang->line('dest_name')));
 		if (trim($mail_address) == '') $msgs[] = $this->lang->line('err_required', array($this->lang->line('mail_address')));
+		if (trim($exclude_group_id) == '') $msgs[] = $this->lang->line('err_required', array($this->lang->line('exclude_group')));
 		
 		if ($msgs != null) return $msgs;
 		
@@ -60,7 +62,7 @@ class MailDestRegistModel extends MailDestBaseModel {
 		$this->add_col_val(MailDestDao::COL_DEST_COMPANY_NAME, $input['dest_company_name']);
 		$this->add_col_val(MailDestDao::COL_DEST_NAME, $input['dest_name']);
 		$this->add_col_val(MailDestDao::COL_MAIL_ADDRESS, $input['mail_address']);
-		$this->add_col_val(MailDestDao::COL_MAIL_GROUP_ID, isset($input['mail_group']) ? implode(',', $input['mail_group']) : null);
+		$this->add_col_val(MailDestDao::COL_EXCLUDE_GROUP_ID, $input['exclude_group_id']);
 		
 		$this->do_insert();
 	}
@@ -75,7 +77,7 @@ class MailDestRegistModel extends MailDestBaseModel {
 		$this->add_col_val(MailDestDao::COL_DEST_COMPANY_NAME, $input['dest_company_name']);
 		$this->add_col_val(MailDestDao::COL_DEST_NAME, $input['dest_name']);
 		$this->add_col_val(MailDestDao::COL_MAIL_ADDRESS, $input['mail_address']);
-		$this->add_col_val(MailDestDao::COL_MAIL_GROUP_ID, isset($input['mail_group']) ? implode(',', $input['mail_group']) : null);
+		$this->add_col_val(MailDestDao::COL_EXCLUDE_GROUP_ID, $input['exclude_group_id']);
 		
 		$this->add_where(MailDestDao::COL_ID, $input['id']);
 		

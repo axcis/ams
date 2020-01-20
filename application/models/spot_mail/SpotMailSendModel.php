@@ -219,7 +219,7 @@ class SpotMailSendModel extends MY_Model {
 		$this->add_col_val(SendHistoryDao::COL_SEND_TYPE, '2'); //個別配信で固定
 		$this->add_col_val(SendHistoryDao::COL_SEND_TIME, date('Y/m/d H:i:s'));
 		$this->add_col_val(SendHistoryDao::COL_SENDER_ID, $input['sender_id']);
-		$this->add_col_val(SendHistoryDao::COL_MAIL_DEST_IDS, $input['mail_dest_id']);
+		$this->add_col_val(SendHistoryDao::COL_MAIL_DEST_ID, $input['mail_dest_id']);
 		$this->add_col_val(SendHistoryDao::COL_SUBJECT, $input['subject']);
 		$this->add_col_val(SendHistoryDao::COL_DISCRIPTION, $input['discription']);
 		if (isset($_FILES['up_file'])) {

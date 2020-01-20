@@ -21,11 +21,7 @@ class MailDestListModel extends MailDestBaseModel {
 		
 		if ($search != null) {
 			$this->set_search_like($search, MailDestDao::COL_DEST_NAME, 'search_dest_name');
-		}
-		
-		if (isset($search['search_mail_group']) && $search['search_mail_group'] != '') {
-			$mail_group_id = $search['search_mail_group'];
-			$this->add_where_statement("FIND_IN_SET($mail_group_id, mail_group_id)");
+			$this->set_search($search, MailDestDao::COL_EXCLUDE_GROUP_ID, 'search_exclude_group_id');
 		}
 		
 		return $this->do_select();
@@ -72,18 +68,9 @@ class MailDestListModel extends MailDestBaseModel {
 		
 		$info = $this->do_select_info();
 		
-		if ($info[MailDestDao::COL_MAIL_GROUP_ID] == null) return $info;
+		$exclude_group_map = $this->get_exclude_group_map(false);
 		
-		$mail_group_ids = explode(',', $info[MailDestDao::COL_MAIL_GROUP_ID]);
-		$mail_group_map = $this->get_mail_group_map(false);
-		
-		$group_info = array();
-		
-		foreach ($mail_group_ids as $group_id) {
-			$group_info[] = $mail_group_map[$group_id];
-		}
-		
-		$info[MailDestDao::COL_MAIL_GROUP_ID] = $group_info;
+		$info[MailDestDao::COL_EXCLUDE_GROUP_ID] = $exclude_group_map[$info[MailDestDao::COL_EXCLUDE_GROUP_ID]];
 		
 		return $info;
 	}

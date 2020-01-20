@@ -28,20 +28,21 @@ class GroupMailSendModel extends MY_Model {
 	}
 	
 	/**
-	 * メール送信グループ
+	 * 除外グループ
 	 */
-	public function get_mail_group_map($no_select_show = true) {
+	public function get_exclude_group_map($no_select_show = true) {
 		
-		$this->set_table(MailGroupDao::TABLE_NAME, self::DB_MASTER);
+		$this->set_table(ExcludeGroupDao::TABLE_NAME, self::DB_MASTER);
 		
-		$this->add_select(MailGroupDao::COL_ID);
-		$this->add_select_as(MailGroupDao::COL_GROUP_NAME, 'name');
+		$this->add_select(ExcludeGroupDao::COL_ID);
+		$this->add_select_as(ExcludeGroupDao::COL_GROUP_NAME, 'name');
 		
 		$list = $this->do_select();
 		
 		$map = array();
 		
-		if ($no_select_show) $map[''] = '送信グループを選択';
+		if ($no_select_show) $map[''] = '除外グループを選択';
+		$map[0] = '除外なし';
 		$map += $this->key_value_map($list);
 		
 		return $map;
@@ -100,7 +101,7 @@ class GroupMailSendModel extends MY_Model {
 	public function validation($input) {
 		
 		$sender_id = $input['sender_id'];
-		$mail_group_id = $input['mail_group_id'];
+		$exclude_group_id = $input['exclude_group_id'];
 		$subject = $input['subject'];
 		$discription = $input['discription'];
 		
@@ -108,7 +109,7 @@ class GroupMailSendModel extends MY_Model {
 		
 		//未入力・未選択チェック
 		if (trim($sender_id) == '') $msgs[] = $this->lang->line('err_not_select', array($this->lang->line('sender')));
-		if (trim($mail_group_id) == '') $msgs[] = $this->lang->line('err_not_select', array($this->lang->line('send_group')));
+		if (trim($exclude_group_id) == '') $msgs[] = $this->lang->line('err_not_select', array($this->lang->line('exclude_group')));
 		if (trim($subject) == '') $msgs[] = $this->lang->line('err_required', array($this->lang->line('subject')));
 		if (trim($discription) == '') $msgs[] = $this->lang->line('err_required', array($this->lang->line('discription')));
 		
@@ -171,15 +172,16 @@ class GroupMailSendModel extends MY_Model {
 		
 		$sender_info = $this->do_select_info();
 		
-		//グループに紐づく送信先情報を取得
+		//送信しないグループ以外の送信先情報を取得
 		$this->set_table(MailDestDao::TABLE_NAME, self::DB_MASTER);
 		
 		$this->add_select(MailDestDao::COL_MAIL_ADDRESS);
 		$this->add_select(MailDestDao::COL_DEST_COMPANY_NAME);
 		$this->add_select(MailDestDao::COL_DEST_NAME);
 		
-		$mail_group_id = $input['mail_group_id'];
-		$this->add_where_statement("FIND_IN_SET($mail_group_id, mail_group_id)");
+		if ($input['exclude_group_id'] != '') {
+			$this->add_where(MailDestDao::COL_EXCLUDE_GROUP_ID, $input['exclude_group_id'], self::COMP_NOT_EQUAL);
+		}
 		
 		$dest_list = $this->do_select();
 		
@@ -221,7 +223,9 @@ class GroupMailSendModel extends MY_Model {
 		$this->add_col_val(SendHistoryDao::COL_SEND_TYPE, '1'); //グループ配信で固定
 		$this->add_col_val(SendHistoryDao::COL_SEND_TIME, date('Y/m/d H:i:s'));
 		$this->add_col_val(SendHistoryDao::COL_SENDER_ID, $input['sender_id']);
-		$this->add_col_val(SendHistoryDao::COL_MAIL_GROUP_ID, $input['mail_group_id']);
+		if ($input['exclude_group_id'] != '') {
+			$this->add_col_val(SendHistoryDao::COL_EXCLUDE_GROUP_ID, $input['exclude_group_id']);
+		}
 		$this->add_col_val(SendHistoryDao::COL_SUBJECT, $input['subject']);
 		$this->add_col_val(SendHistoryDao::COL_DISCRIPTION, $input['discription']);
 		if (isset($_FILES['up_file'])) {

@@ -13,14 +13,14 @@ class GroupMailSend extends MY_Controller {
 	public function index() {
 		
 		$this->load->model('group_mail/GroupMailSendModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/ExcludeGroupDao');
 		$this->load->library('dao/MailTemplateDao');
 		$this->load->library('dao/SenderDao');
 		
 		$this->set('action', 'send');
 		
 		$this->set('mail_sender_map', $this->model->get_sender_map());
-		$this->set('mail_group_map', $this->model->get_mail_group_map());
+		$this->set('exclude_group_map', $this->model->get_exclude_group_map());
 		$this->set('mail_template_map', $this->model->get_mail_template_map());
 		
 		$this->view('group_mail/group_mail_send_input');
@@ -33,7 +33,7 @@ class GroupMailSend extends MY_Controller {
 		
 		$this->load->model('group_mail/GroupMailSendModel', 'model');
 		$this->load->library('dao/SendHistoryDao');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/ExcludeGroupDao');
 		$this->load->library('dao/MailTemplateDao');
 		$this->load->library('dao/SenderDao');
 		
@@ -41,7 +41,7 @@ class GroupMailSend extends MY_Controller {
 		$this->set('action', 'send');
 		
 		$this->set('mail_sender_map', $this->model->get_sender_map());
-		$this->set('mail_group_map', $this->model->get_mail_group_map());
+		$this->set('exclude_group_map', $this->model->get_exclude_group_map());
 		$this->set('mail_template_map', $this->model->get_mail_template_map());
 		
 		$this->view('group_mail/group_mail_send_input');
@@ -78,10 +78,10 @@ class GroupMailSend extends MY_Controller {
 		
 		if ($msgs != null) {
 			$this->set_err_info($msgs);
-			$this->load->library('dao/MailGroupDao');
+			$this->load->library('dao/ExcludeGroupDao');
 			$this->load->library('dao/MailTemplateDao');
 			$this->set('mail_sender_map', $this->model->get_sender_map());
-			$this->set('mail_group_map', $this->model->get_mail_group_map());
+			$this->set('exclude_group_map', $this->model->get_exclude_group_map());
 			$this->set('mail_template_map', $this->model->get_mail_template_map());
 			$this->view('group_mail/group_mail_send_input');
 			return;

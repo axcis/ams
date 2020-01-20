@@ -21,15 +21,13 @@
 	
 	{% if type == '1' %}
 		<div class="event-content">
-			<h4><i class="fa" aria-hidden="true"></i>配信グループ名</h4>
-			<p>{{ mail_group_id }}</p>
+			<h4><i class="fa" aria-hidden="true"></i>除外グループ名</h4>
+			<p>{{ exclude_group_id }}</p>
 		</div>
 	{% elseif type == '2' %}
 		<div class="event-content">
 			<h4><i class="fa" aria-hidden="true"></i>宛先</h4>
-			{% for key, value in mail_dest_ids %}
-				<p>{{ value }}</p>
-			{% endfor %}
+			<p>{{ mail_dest_id }}</p>
 		</div>
 	{% endif %}
 	
