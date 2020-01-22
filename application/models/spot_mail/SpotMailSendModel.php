@@ -131,7 +131,7 @@ class SpotMailSendModel extends MY_Model {
 				$before_len = mb_strlen($_FILES["up_file"]["name"][$i]);
 				$after_len = mb_strlen(mb_convert_encoding($file_name, 'UTF-8', 'SJIS'));
 				if ($before_len != $after_len) {
-					$msgs[] = $this->lang->line('環境依存文字を含むファイル名は添付できません。');
+					$msgs[] = $this->lang->line('err_file_upload_env_character');
 					break;
 				}
 				if ($_FILES["up_file"]["error"][$i] == 1 || $_FILES["up_file"]["error"][$i] == 2) {
@@ -140,7 +140,7 @@ class SpotMailSendModel extends MY_Model {
 				}
 				$file_total_size += $_FILES["up_file"]['size'][$i];
 			}
-			if ($file_total_size > 3145728) $msgs[] = $this->lang->line('ファイルの総合計サイズは3MBまでです。');
+			if ($file_total_size > 3145728) $msgs[] = 'ファイルの総合計サイズは3MBまでです。';
 		}
 		
 		return $msgs;
