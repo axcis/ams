@@ -88,6 +88,18 @@ class SpotMailSendModel extends MY_Model {
 	}
 	
 	/**
+	 * 参照配信用
+	 */
+	public function get_history_info($id) {
+		
+		$this->set_table(SendHistoryDao::TABLE_NAME, self::DB_TRAN);
+		
+		$this->add_where(SendHistoryDao::COL_ID, $id);
+		
+		return $this->do_select_info();
+	}
+	
+	/**
 	 * バリデーション
 	 */
 	public function validation($input) {
@@ -119,7 +131,7 @@ class SpotMailSendModel extends MY_Model {
 				$before_len = mb_strlen($_FILES["up_file"]["name"][$i]);
 				$after_len = mb_strlen(mb_convert_encoding($file_name, 'UTF-8', 'SJIS'));
 				if ($before_len != $after_len) {
-					$msgs[] = $this->lang->line('環境依存文字を含むファイル名は添付できません。');
+					$msgs[] = $this->lang->line('err_file_upload_env_character');
 					break;
 				}
 				if ($_FILES["up_file"]["error"][$i] == 1 || $_FILES["up_file"]["error"][$i] == 2) {
@@ -128,7 +140,7 @@ class SpotMailSendModel extends MY_Model {
 				}
 				$file_total_size += $_FILES["up_file"]['size'][$i];
 			}
-			if ($file_total_size > 3145728) $msgs[] = $this->lang->line('ファイルの総合計サイズは3MBまでです。');
+			if ($file_total_size > 3145728) $msgs[] = 'ファイルの総合計サイズは3MBまでです。';
 		}
 		
 		return $msgs;
@@ -207,7 +219,7 @@ class SpotMailSendModel extends MY_Model {
 		$this->add_col_val(SendHistoryDao::COL_SEND_TYPE, '2'); //個別配信で固定
 		$this->add_col_val(SendHistoryDao::COL_SEND_TIME, date('Y/m/d H:i:s'));
 		$this->add_col_val(SendHistoryDao::COL_SENDER_ID, $input['sender_id']);
-		$this->add_col_val(SendHistoryDao::COL_MAIL_DEST_IDS, $input['mail_dest_id']);
+		$this->add_col_val(SendHistoryDao::COL_MAIL_DEST_ID, $input['mail_dest_id']);
 		$this->add_col_val(SendHistoryDao::COL_SUBJECT, $input['subject']);
 		$this->add_col_val(SendHistoryDao::COL_DISCRIPTION, $input['discription']);
 		if (isset($_FILES['up_file'])) {

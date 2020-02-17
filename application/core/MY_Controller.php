@@ -201,12 +201,11 @@ class MY_Controller extends CI_Controller {
 		//コンテンツ情報の記載
 		$list[] = array('btn_name' => 'トップ', 'url' => base_url(). 'TopPage', 'key' => 'top');
 		
-// 		$list[] = array('btn_name' => '未配信メール', 'url' => base_url(). 'undelivered/UndeliveredMailList', 'key' => 'undelivered');
 		$list[] = array('btn_name' => 'グループ配信', 'url' => base_url(). 'group_mail/GroupMailSend', 'key' => 'group_mail');
 		$list[] = array('btn_name' => 'スポット配信', 'url' => base_url(). 'spot_mail/SpotMailSend', 'key' => 'spot_mail');
 		$list[] = array('btn_name' => '送信者登録', 'url' => base_url(). 'sender/SenderList', 'key' => 'sender');
 		$list[] = array('btn_name' => '宛先登録', 'url' => base_url(). 'mail_dest/MailDestList', 'key' => 'mail_dest');
-		$list[] = array('btn_name' => '送信グループ', 'url' => base_url(). 'mail_group/MailGroupList', 'key' => 'mail_group');
+		$list[] = array('btn_name' => '除外グループ', 'url' => base_url(). 'exclude_group/ExcludeGroupList', 'key' => 'exclude_group');
 		$list[] = array('btn_name' => 'テンプレート', 'url' => base_url(). 'mail_template/MailTemplateList', 'key' => 'mail_template');
 		
 		return $list;

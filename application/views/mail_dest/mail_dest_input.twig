@@ -12,13 +12,7 @@
 		<dd>{{ form.input("dest_name", dest_name, "text", "", "", 50) }}</dd>
 		<dt>{{ form.set_col("メールアドレス", 1) }}</dt>
 		<dd>{{ form.input("mail_address", mail_address, "text", "", "", 50) }}</dd>
-		<dt>{{ form.set_col("送信グループ") }}</dt>
-		<dd>
-			{% for key,value in mail_group_map %}
-				<p class="form-check-area">
-					{{ form_checkbox("mail_group[]", key, value, "mail_group_label"~key, mail_group_checked)|raw }}
-				</p>
-			{% endfor %}
-		</dd>
+		<dt>{{ form.set_col("除外送信グループ") }}</dt>
+		<dd>{{ form_select('exclude_group_id', exclude_group_map, exclude_group_id)|raw }}</dd>
 	</dl>
 {% endblock %}

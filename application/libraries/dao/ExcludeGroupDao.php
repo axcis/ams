@@ -5,9 +5,9 @@
  * @author takanori_gozu
  *
  */
-class MailGroupDao {
+class ExcludeGroupDao {
 	
-	const TABLE_NAME = 'mail_group';
+	const TABLE_NAME = 'exclude_group';
 	
 	const COL_ID = 'id';
 	const COL_GROUP_NAME = 'group_name';

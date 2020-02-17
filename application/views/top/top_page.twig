@@ -23,7 +23,7 @@
 								<td class="ta-center">{{ item.send_type }}</td>
 								<td class="ta-center">{{ item.send_time|date('Y年n月j日 H:i') }}</td>
 								<td class="ta-center">{{ item.subject }}</td>
-								<td class="ta-center"></td>
+								<td class="ta-center"><input type="button" class="btn_detail" value="詳細" onclick="sub_redirect('{{ base_url }}', 'TopPage', 'detail', '{{ item.id }}');"></td>
 							</tr>
 						{% endfor %}
 					</tbody>

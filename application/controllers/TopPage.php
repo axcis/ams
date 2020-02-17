@@ -13,7 +13,7 @@ class TopPage extends MY_Controller {
 	public function index() {
 		
 		$this->load->model('top/TopPageModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/ExcludeGroupDao');
 		$this->load->library('dao/MailDestDao');
 		$this->load->library('dao/SenderDao');
 		$this->load->library('dao/SendHistoryDao');
@@ -35,7 +35,7 @@ class TopPage extends MY_Controller {
 	public function search() {
 		
 		$this->load->model('top/TopPageModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/ExcludeGroupDao');
 		$this->load->library('dao/MailDestDao');
 		$this->load->library('dao/SenderDao');
 		$this->load->library('dao/SendHistoryDao');
@@ -51,6 +51,22 @@ class TopPage extends MY_Controller {
 		$this->set('deliver_type_map', $this->model->get_deliver_type_map());
 		
 		$this->view('top/top_page');
+	}
+	
+	/**
+	 * 詳細
+	 */
+	public function detail($id) {
+		
+		$this->load->model('top/TopPageModel', 'model');
+		$this->load->library('dao/ExcludeGroupDao');
+		$this->load->library('dao/MailDestDao');
+		$this->load->library('dao/SenderDao');
+		$this->load->library('dao/SendHistoryDao');
+		
+		$this->set_attribute($this->model->get_info($id));
+		
+		$this->view('top/send_history_detail');;
 	}
 }
 ?>

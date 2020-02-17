@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block search %}
-	{{ main.select_block("search-col", "送信グループ", 'search_mail_group', mail_group_map, search_mail_group) }}
+	{{ main.select_block("search-col", "除外グループ", 'search_exclude_group_id', exclude_group_map, search_exclude_group_id) }}
 	{{ main.text_block("search-col", "宛先名", '', 'search_dest_name', search_dest_name) }}
 {% endblock %}
 

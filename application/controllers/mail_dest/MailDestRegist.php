@@ -10,11 +10,11 @@ class MailDestRegist extends MY_Controller {
 	public function regist_input() {
 		
 		$this->load->model('mail_dest/MailDestRegistModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/ExcludeGroupDao');
 		
 		$this->set('action', 'regist');
 		$this->set('class_path', 'mail_dest/MailDest');
-		$this->set('mail_group_map', $this->model->get_mail_group_map(false));
+		$this->set('exclude_group_map', $this->model->get_exclude_group_map(false));
 		
 		$this->view('mail_dest/mail_dest_input');
 	}
@@ -34,8 +34,8 @@ class MailDestRegist extends MY_Controller {
 		if ($msgs != null) {
 			$this->set_err_info($msgs);
 			if (isset($input['mail_group'])) $this->set('mail_group_checked', $input['mail_group']);
-			$this->load->library('dao/MailGroupDao');
-			$this->set('mail_group_map', $this->model->get_mail_group_map(false));
+			$this->load->library('dao/ExcludeGroupDao');
+			$this->set('exclude_group_map', $this->model->get_exclude_group_map(false));
 			$this->view('mail_dest/mail_dest_input');
 			return;
 		}
@@ -49,11 +49,11 @@ class MailDestRegist extends MY_Controller {
 		
 		$this->load->model('mail_dest/MailDestRegistModel', 'model');
 		$this->load->library('dao/MailDestDao');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->library('dao/ExcludeGroupDao');
 		
 		$this->set('action', 'modify');
 		$this->set('class_path', 'mail_dest/MailDest');
-		$this->set('mail_group_map', $this->model->get_mail_group_map(false));
+		$this->set('exclude_group_map', $this->model->get_exclude_group_map(false));
 		
 		$info = $this->model->get_info($id);
 		
@@ -79,8 +79,8 @@ class MailDestRegist extends MY_Controller {
 		if ($msgs != null) {
 			$this->set_err_info($msgs);
 			if (isset($input['mail_group'])) $this->set('mail_group_checked', $input['mail_group']);
-			$this->load->library('dao/MailGroupDao');
-			$this->set('mail_group_map', $this->model->get_mail_group_map(false));
+			$this->load->library('dao/ExcludeGroupDao');
+			$this->set('exclude_group_map', $this->model->get_exclude_group_map(false));
 			$this->view('mail_dest/mail_dest_input');
 			return;
 		}

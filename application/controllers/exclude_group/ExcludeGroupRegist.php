@@ -1,18 +1,18 @@
 <?php
 
 /**
- * MailGroupRegistController
+ * ExcludeGroupRegistController
  * @author takanori_gozu
  *
  */
-class MailGroupRegist extends MY_Controller {
+class ExcludeGroupRegist extends MY_Controller {
 	
 	public function regist_input() {
 		
 		$this->set('action', 'regist');
-		$this->set('class_path', 'mail_group/MailGroup');
+		$this->set('class_path', 'exclude_group/ExcludeGroup');
 		
-		$this->view('mail_group/mail_group_input');
+		$this->view('exclude_group/exclude_group_input');
 	}
 	
 	/**
@@ -20,8 +20,8 @@ class MailGroupRegist extends MY_Controller {
 	 */
 	public function regist() {
 		
-		$this->load->model('mail_group/MailGroupRegistModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->model('exclude_group/ExcludeGroupRegistModel', 'model');
+		$this->load->library('dao/ExcludeGroupDao');
 		
 		$input = $this->get_attribute();
 		
@@ -29,7 +29,7 @@ class MailGroupRegist extends MY_Controller {
 		
 		if ($msgs != null) {
 			$this->set_err_info($msgs);
-			$this->view('mail_group/mail_group_input');
+			$this->view('exclude_group/exclude_group_input');
 			return;
 		}
 		
@@ -40,15 +40,15 @@ class MailGroupRegist extends MY_Controller {
 	
 	public function modify_input($id) {
 		
-		$this->load->model('mail_group/MailGroupRegistModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->model('exclude_group/ExcludeGroupRegistModel', 'model');
+		$this->load->library('dao/ExcludeGroupDao');
 		
 		$this->set('action', 'modify');
-		$this->set('class_path', 'mail_group/MailGroup');
+		$this->set('class_path', 'exclude_group/ExcludeGroup');
 		
 		$this->set_attribute($this->model->get_info($id));
 		
-		$this->view('mail_group/mail_group_input');
+		$this->view('exclude_group/exclude_group_input');
 	}
 	
 	/**
@@ -56,8 +56,8 @@ class MailGroupRegist extends MY_Controller {
 	 */
 	public function modify() {
 		
-		$this->load->model('mail_group/MailGroupRegistModel', 'model');
-		$this->load->library('dao/MailGroupDao');
+		$this->load->model('exclude_group/ExcludeGroupRegistModel', 'model');
+		$this->load->library('dao/ExcludeGroupDao');
 		
 		$input = $this->get_attribute();
 		
@@ -65,7 +65,7 @@ class MailGroupRegist extends MY_Controller {
 		
 		if ($msgs != null) {
 			$this->set_err_info($msgs);
-			$this->view('mail_group/mail_group_input');
+			$this->view('exclude_group/exclude_group_input');
 			return;
 		}
 		
