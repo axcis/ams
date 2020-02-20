@@ -89,5 +89,20 @@ class MailDestRegist extends MY_Controller {
 		
 		$this->redirect_js(base_url(). $this->get('class_path'). 'List');
 	}
+	
+	/**
+	 * 削除
+	 */
+	public function delete() {
+		
+		$this->load->model('mail_dest/MailDestRegistModel', 'model');
+		$this->load->library('dao/MailDestDao');
+		
+		$id = $this->get('id');
+		
+		$this->model->db_delete($id);
+		
+		$this->redirect_js(base_url(). $this->get('class_path'). 'List');
+	}
 }
 ?>

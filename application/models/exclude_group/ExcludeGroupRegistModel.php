@@ -62,5 +62,17 @@ class ExcludeGroupRegistModel extends MY_Model {
 		
 		$this->do_update();
 	}
+	
+	/**
+	 * 削除
+	 */
+	public function db_delete($id) {
+		
+		$this->set_table(ExcludeGroupDao::TABLE_NAME, self::DB_MASTER);
+		
+		$this->add_where(ExcludeGroupDao::COL_ID, $id);
+		
+		$this->do_delete();
+	}
 }
 ?>

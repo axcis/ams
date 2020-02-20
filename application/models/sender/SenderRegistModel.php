@@ -74,5 +74,17 @@ class SenderRegistModel extends MY_Model {
 		
 		$this->do_update();
 	}
+	
+	/**
+	 * 削除
+	 */
+	public function db_delete($id) {
+		
+		$this->set_table(SenderDao::TABLE_NAME, self::DB_MASTER);
+		
+		$this->add_where(SenderDao::COL_ID, $id);
+		
+		$this->do_delete();
+	}
 }
 ?>
