@@ -73,5 +73,20 @@ class MailTemplateRegist extends MY_Controller {
 		
 		$this->redirect_js(base_url(). $this->get('class_path'). 'List');
 	}
+	
+	/**
+	 * 削除
+	 */
+	public function delete() {
+		
+		$this->load->model('mail_template/MailTemplateRegistModel', 'model');
+		$this->load->library('dao/MailTemplateDao');
+		
+		$id = $this->get('id');
+		
+		$this->model->db_delete($id);
+		
+		$this->redirect_js(base_url(). $this->get('class_path'). 'List');
+	}
 }
 ?>

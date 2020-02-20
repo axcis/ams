@@ -73,5 +73,17 @@ class MailTemplateRegistModel extends MY_Model {
 		
 		$this->do_update();
 	}
+	
+	/**
+	 * 削除
+	 */
+	public function db_delete($id) {
+		
+		$this->set_table(MailTemplateDao::TABLE_NAME, self::DB_MASTER);
+		
+		$this->add_where(MailTemplateDao::COL_ID, $id);
+		
+		$this->do_delete();
+	}
 }
 ?>

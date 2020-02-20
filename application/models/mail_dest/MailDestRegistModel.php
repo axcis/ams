@@ -83,5 +83,17 @@ class MailDestRegistModel extends MailDestBaseModel {
 		
 		$this->do_update();
 	}
+	
+	/**
+	 * 削除
+	 */
+	public function db_delete($id) {
+		
+		$this->set_table(MailDestDao::TABLE_NAME, self::DB_MASTER);
+		
+		$this->add_where(MailDestDao::COL_ID, $id);
+		
+		$this->do_delete();
+	}
 }
 ?>
